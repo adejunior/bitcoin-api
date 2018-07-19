@@ -1,4 +1,4 @@
-package com.quotebitcoin.quotebitcoin;
+package com.quotebitcoin.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
