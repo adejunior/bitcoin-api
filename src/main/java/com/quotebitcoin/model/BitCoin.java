@@ -12,16 +12,7 @@ public class BitCoin {
     private String type;
     
     public BitCoin() {}
-    
-    public BitCoin(Date date, BigDecimal price, BigDecimal amount, BigDecimal tid, String type) {
-	super();
-	this.date = date;
-	this.price = price;
-	this.amount = amount;
-	this.tid = tid;
-	this.type = type;
-    }
-
+            
     public Date getDate() {
         return date;
     }
@@ -61,15 +52,25 @@ public class BitCoin {
     public void setType(String type) {
         this.type = type;
     }
-        
+
     @Override
-    public String toString() {
-	return "{\"date\":" + date + ", \"price\":" + price + ", \"amount\":" + amount + ", \"tid\":" + tid + ", \"type\":" + "\"" + type + "\""
-		+ "}";
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((amount == null) ? 0 : amount.hashCode());
+	result = prime * result + ((date == null) ? 0 : date.hashCode());
+	result = prime * result + ((price == null) ? 0 : price.hashCode());
+	result = prime * result + ((tid == null) ? 0 : tid.hashCode());
+	result = prime * result + ((type == null) ? 0 : type.hashCode());
+	return result;
     }
 
     @Override
     public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
 	if (getClass() != obj.getClass())
 	    return false;
 	BitCoin other = (BitCoin) obj;
@@ -99,8 +100,8 @@ public class BitCoin {
 	} else if (!type.equals(other.type))
 	    return false;
 	return true;
-    }   
+    }
     
     
-    
+            
 }
