@@ -31,7 +31,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport{
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
                 .title("Quote BitCoin REST API")
-                .description("\"Quote Trades\"")
+                .description("\"Quote Trades BitCoin\"")
                 .version("1.0.0")
                 .contact(new Contact("Ademir Junior", "", "ademir.jds.junior@gmail.com"))
                 .build();
