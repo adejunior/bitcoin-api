@@ -1,6 +1,6 @@
-# Quote BitCoin Interface
+# Quote BitCoin API
 
-Interface quote BitCoin for demonstration trades.
+Backend quote trades of the BitCoin.
 
 ## Getting Started
 
@@ -9,7 +9,15 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 ```
-Node v8.9.4
+Java 8
+```
+
+## Running the Tests
+
+To run the tests through maven: 
+
+```
+mvn install
 ```
 
 ## Running the Application
@@ -17,18 +25,21 @@ Node v8.9.4
 To run the application through npm: 
 
 ```
-npm start
+mvn spring-boot:run
 ```
 
-## Deployment
+## Endpoints API descriptive Swagger
 
-Add additional notes about how to deploy this on a live system
+After run application:
+
+[Swagger](http://localhost:8080/swagger-ui.html)
+
 
 ## Built With
 
-* [React](https://reactjs.org/) - The library for building user interfaces
+* [Spring Boot](https://spring.io/projects/spring-boot) - The framework for building API
 
 ## Authors
 
-* **Ademir Junior** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Ademir Junior** - *Solution* - [QuoteAPIbitcoin](https://github.com/adejunior/quote-bitcoin)
 
