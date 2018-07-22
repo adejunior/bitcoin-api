@@ -1,6 +1,7 @@
 package com.quotebitcoin.model;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BitCoin {
@@ -13,8 +14,8 @@ public class BitCoin {
     
     public BitCoin() {}
             
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date (this.date.getTime()*1000));
     }
 
     public void setDate(Date date) {
