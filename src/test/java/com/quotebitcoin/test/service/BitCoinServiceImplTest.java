@@ -78,12 +78,12 @@ public class BitCoinServiceImplTest {
 
     @Test(expected=AssertionError.class)
     public void getQuoteBitCoinIncorrectUrl_shouldReturnAssertionError() {
-	bitCoinServiceImpl.getPayloadQuoteBitCoin("");
+	bitCoinServiceImpl.getTradesQuoteBitCoin("");
     }
 
     @Test
     public void getListQuoteBitCoins_shouldReturnList() {			
-	List<BitCoin> listBitCoin = bitCoinServiceImpl.getPayloadQuoteBitCoin(ConstantHelpers.URL_TRADES.getValue());	
+	List<BitCoin> listBitCoin = bitCoinServiceImpl.getTradesQuoteBitCoin(ConstantHelpers.URL_TRADES.getValue());	
 	Assert.assertNotNull(listBitCoin);	
     }
 
@@ -95,7 +95,7 @@ public class BitCoinServiceImplTest {
 		    "{\"date\":1501871382,\"price\":9723.00000000,\"amount\":0.00200000,\"tid\":739718, \"type\":\"sell\"}"
 		    , BitCoin.class);
 
-	    BitCoin bitCoinActual = bitCoinServiceImpl.getPayloadQuoteBitCoin(ConstantHelpers.URL_TRADES.getValue())
+	    BitCoin bitCoinActual = bitCoinServiceImpl.getTradesQuoteBitCoin(ConstantHelpers.URL_TRADES.getValue())
 		    .stream()
 		    .filter(x -> x.getTid().equals(new BigDecimal(739718)))
 		    .findFirst()

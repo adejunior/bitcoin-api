@@ -54,7 +54,7 @@ public class BitCoinControllerTest {
 				new TypeReference<List<BitCoin>>(){})
 		);
 	
-        this.mockMvc.perform(get("/quote/topfive/{typeOperation}", "sell")).andDo(print())
+        this.mockMvc.perform(get("/quote/topfive/{typeOperation}", "sell"))
         	.andExpect(status().isOk())
         	.andExpect(jsonPath("$", Matchers.hasSize(5)))
         	.andExpect(jsonPath("$[0].tid").value("739724"))
@@ -76,7 +76,7 @@ public class BitCoinControllerTest {
 				new TypeReference<List<BitCoin>>(){})
 		);
 	
-        this.mockMvc.perform(get("/quote/topfive/{typeOperation}", "buy")).andDo(print())
+        this.mockMvc.perform(get("/quote/topfive/{typeOperation}", "buy"))
         	.andExpect(status().isOk())
         	.andExpect(jsonPath("$", Matchers.hasSize(5)))
         	.andExpect(jsonPath("$[0].tid").value("739728"))
@@ -90,7 +90,7 @@ public class BitCoinControllerTest {
     public void getAverageSales_shouldReturnStatusOkAndAverageValue() throws Exception {
 	when(bitCoinServiceImpl.getAverage("sell")).thenReturn(new BigDecimal(9780));
 	
-        this.mockMvc.perform(get("/quote/average/{typeOperation}", "sell")).andDo(print())
+        this.mockMvc.perform(get("/quote/average/{typeOperation}", "sell"))
         	.andExpect(status().isOk())
         	.andExpect(jsonPath("$").value("9780"));
     }
@@ -99,7 +99,7 @@ public class BitCoinControllerTest {
     public void getAverageBuy_shouldReturnStatusOkAndAverageValue() throws Exception {
 	when(bitCoinServiceImpl.getAverage("buy")).thenReturn(new BigDecimal(9760));
 	
-        this.mockMvc.perform(get("/quote/average/{typeOperation}", "buy")).andDo(print())
+        this.mockMvc.perform(get("/quote/average/{typeOperation}", "buy"))
         	.andExpect(status().isOk())
         	.andExpect(jsonPath("$").value("9760"));
     }
@@ -108,7 +108,7 @@ public class BitCoinControllerTest {
     public void getMedianSales_shouldReturnStatusOkAndMedianValue() throws Exception {
 	when(bitCoinServiceImpl.getMedian("sell")).thenReturn(new BigDecimal(9730));
 	
-        this.mockMvc.perform(get("/quote/median/{typeOperation}", "sell")).andDo(print())
+        this.mockMvc.perform(get("/quote/median/{typeOperation}", "sell"))
         	.andExpect(status().isOk())
         	.andExpect(jsonPath("$").value("9730"));
     }
@@ -117,7 +117,7 @@ public class BitCoinControllerTest {
     public void getMedianBuy_shouldReturnStatusOkAndMedianValue() throws Exception {
 	when(bitCoinServiceImpl.getMedian("buy")).thenReturn(new BigDecimal(9710.5));
 	
-        this.mockMvc.perform(get("/quote/median/{typeOperation}", "buy")).andDo(print())
+        this.mockMvc.perform(get("/quote/median/{typeOperation}", "buy"))
         	.andExpect(status().isOk())
         	.andExpect(jsonPath("$").value("9710.5"));
     }
@@ -126,7 +126,7 @@ public class BitCoinControllerTest {
     public void getDeviationSales_shouldReturnStatusOkAndDeviationValue() throws Exception {
 	when(bitCoinServiceImpl.getStandardDeviation("sell")).thenReturn(new BigDecimal("20.91"));
 	
-        this.mockMvc.perform(get("/quote/deviation/{typeOperation}", "sell")).andDo(print())
+        this.mockMvc.perform(get("/quote/deviation/{typeOperation}", "sell"))
         	.andExpect(status().isOk())
         	.andExpect(jsonPath("$").value("20.91"));
     }
@@ -135,7 +135,7 @@ public class BitCoinControllerTest {
     public void getDeviationBuy_shouldReturnStatusOkAndDeviationValue() throws Exception {
 	when(bitCoinServiceImpl.getStandardDeviation("buy")).thenReturn(new BigDecimal("17.76"));
 	
-        this.mockMvc.perform(get("/quote/deviation/{typeOperation}", "buy")).andDo(print())
+        this.mockMvc.perform(get("/quote/deviation/{typeOperation}", "buy"))
         	.andExpect(status().isOk())
         	.andExpect(jsonPath("$").value("17.76"));
     }

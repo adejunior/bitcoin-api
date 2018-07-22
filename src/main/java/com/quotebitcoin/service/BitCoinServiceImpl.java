@@ -34,15 +34,15 @@ public class BitCoinServiceImpl {
 		new ParameterizedTypeReference<List<BitCoin>>(){});	
     }
 
-    public List<BitCoin> getPayloadQuoteBitCoin(String urlSourceApiBitCoin) throws QuoteApiException {	
-	return getQuoteBitCoinRequest(urlSourceApiBitCoin).getBody();
+    public List<BitCoin> getTradesQuoteBitCoin(String urlSourceApiBitCoin) throws QuoteApiException {	
+	return getQuoteBitCoinRequest(urlSourceApiBitCoin).getBody().stream().collect(Collectors.toList());
     }
 
 
-    public List<BitCoin> getFilterListbitCoinByType(String typeOperation) throws QuoteApiException {
+    public List<BitCoin> getListbitCoinByTypeOperation(String typeOperation) throws QuoteApiException {
 	if(!typeOperation.equals("sell") && !typeOperation.equals("buy"))
 	    throw new QuoteApiException("Invalid Type operation for Quote BitCoin");
-	return getPayloadQuoteBitCoin(ConstantHelpers.URL_TRADES.getValue())
+	return getTradesQuoteBitCoin(ConstantHelpers.URL_TRADES.getValue())
 		.stream()
 		.filter((x) -> x.getType().equals(typeOperation))
 		.collect(Collectors.toList());
@@ -50,7 +50,7 @@ public class BitCoinServiceImpl {
     }
 
     public List<BitCoin> getTopFiveHigher(String typeOperation) throws QuoteApiException {
-	List<BitCoin> listBitCoinByTypeOperation = getFilterListbitCoinByType(typeOperation);
+	List<BitCoin> listBitCoinByTypeOperation = getListbitCoinByTypeOperation(typeOperation);
 	return listBitCoinByTypeOperation
 		.stream()
 		.sorted(Comparator.comparing(BitCoin::getPrice).reversed())
@@ -59,7 +59,7 @@ public class BitCoinServiceImpl {
     }
 
     public BigDecimal getAverage(String typeOperation) throws QuoteApiException {
-	List<BitCoin> listBitCoinByTypeOperation = getFilterListbitCoinByType(typeOperation);
+	List<BitCoin> listBitCoinByTypeOperation = getListbitCoinByTypeOperation(typeOperation);
 	return listBitCoinByTypeOperation
 		.stream()		
 		.map(x -> x.getPrice())
@@ -68,7 +68,7 @@ public class BitCoinServiceImpl {
     }    
 
     public BigDecimal getMedian(String typeOperation) throws QuoteApiException {
-	List<BitCoin> listBitCoinByTypeOperation = getFilterListbitCoinByType(typeOperation);
+	List<BitCoin> listBitCoinByTypeOperation = getListbitCoinByTypeOperation(typeOperation);
 	Double[] arrayPrices = listBitCoinByTypeOperation
                     		.stream()
                     		.map(x->x.getPrice().doubleValue())
@@ -79,7 +79,7 @@ public class BitCoinServiceImpl {
     }
 
     public BigDecimal getStandardDeviation(String typeOperation) throws QuoteApiException {
-	List<BitCoin> listBitCoinByTypeOperation = getFilterListbitCoinByType(typeOperation);
+	List<BitCoin> listBitCoinByTypeOperation = getListbitCoinByTypeOperation(typeOperation);
 	Double[] arrayPrices = listBitCoinByTypeOperation
 				.stream()
 				.map(x->x.getPrice().doubleValue()).toArray(Double[]::new);
